@@ -93,9 +93,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/D_FF.v
-  D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/button_debounce.v
-  D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/clock_8Hz.v
+  D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/my_btn_debounce.v
   D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/tick_generator.v
   D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/top.v
 }
