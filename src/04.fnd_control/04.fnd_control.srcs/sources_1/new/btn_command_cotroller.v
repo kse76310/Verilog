@@ -44,6 +44,16 @@ module btn_command_cotroller(
             end else begin
                 counter <= counter + 1;
             end
+        // down counter
+        end else if(r_mode == DOWN_COUNTER)begin
+            if(counter == 20'd1_000_000-1)begin
+                if(ms10_counter > 0)begin
+                    ms10_counter <= ms10_counter -1;
+                end
+                counter <=0;
+            end else begin
+                counter <= counter +1;
+            end
         end else begin
             ms10_counter <= 0;
             counter <= 0;
