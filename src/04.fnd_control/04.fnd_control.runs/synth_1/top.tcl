@@ -94,6 +94,7 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   D:/project1/FPGA/src/04.fnd_control/04.fnd_control.srcs/sources_1/imports/new/D_FF.v
+  D:/project1/FPGA/src/04.fnd_control/04.fnd_control.srcs/sources_1/new/btn_command_cotroller.v
   D:/project1/FPGA/src/04.fnd_control/04.fnd_control.srcs/sources_1/imports/new/button_debounce.v
   D:/project1/FPGA/src/04.fnd_control/04.fnd_control.srcs/sources_1/imports/new/clock_8Hz.v
   D:/project1/FPGA/src/04.fnd_control/04.fnd_control.srcs/sources_1/new/fnd_controllor.v

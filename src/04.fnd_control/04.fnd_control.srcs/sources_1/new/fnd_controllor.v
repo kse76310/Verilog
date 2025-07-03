@@ -39,8 +39,7 @@ module fnd_controllor(
 endmodule
 
 // 1ms마다 fnd를 display 하기 위해 digit 1자리씩 선택
-// 4sms까지는 잔상 효과가 있다 그 이상이면 깜빡임 현상이 발생
-
+// 4ms까지는 잔상 효과가 있다 그 이상이면 깜빡임 현상이 발생
 module fnd_digit_select (
     input clk,
     input reset,
@@ -54,7 +53,7 @@ module fnd_digit_select (
         if(reset) begin
             r_1ms_counter <= 0;
             r_digit_sel <= 0;
-            r_digit_sel <= 0;
+            sel <= 0;
         end else begin
             if(r_1ms_counter == 100_100-1) begin // 1ms
                 r_1ms_counter <= 0;
@@ -108,20 +107,19 @@ module fnd_display(
             default : begin bcd_data = 4'b0000; an = 4'b1111; end
         endcase
     end
-
-    always @(bcd_data) begin
+        always @(bcd_data) begin
         case(bcd_data)
-            4'd0: seg = 8'b11000000;                       
-            4'd1: seg = 8'b11111101;                       
-            4'd2: seg = 8'b11001111;                       
-            4'd3: seg = 8'b10110000;                       
-            4'd4: seg = 8'b10011001;                       
-            4'd5: seg = 8'b10010010;                       
-            4'd6: seg = 8'b10000010;                       
-            4'd7: seg = 8'b10110000;                       
-            4'd8: seg = 8'b10000000;                       
-            4'd9: seg = 8'b10010000;                       
-            default: seg = 8'b11111111;                       
-        endcase                       
+            4'd0: seg = 8'b11000000;        // 0
+            4'd1: seg = 8'b11111001;        // 1
+            4'd2: seg = 8'b10100100;        // 2
+            4'd3: seg = 8'b10110000;        // 3
+            4'd4: seg = 8'b10011001;        // 4
+            4'd5: seg = 8'b10010010;        // 5
+            4'd6: seg = 8'b10000010;        // 6
+            4'd7: seg = 8'b11111000;        // 7
+            4'd8: seg = 8'b10000000;        // 8
+            4'd9: seg = 8'b10010000;        // 9
+            default : seg = 8'b11111111;    // all off
+        endcase
     end
 endmodule

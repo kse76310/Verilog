@@ -6,13 +6,13 @@ module top(
     input reset, 
     input [2:0]btn,
     input [7:0]sw,
-    input [13:0] input_data,
     output [6:0] seg,
     output [3:0] an,
     output [15:0] led
     );
 
-    wire w_btn_debounce;
+    wire [2:0] w_btn_debounce;   //여기 추가
+    wire [13:0] w_seg_data;       //여기 추가
     wire w_tick;
     reg r_led_toggle = 1'b0;
     reg r_led_100mstoggle = 1'b0;
@@ -28,7 +28,7 @@ module top(
     button_debounce u_button_debounce(
         .i_clk(clk), 
         .i_reset(reset), 
-        .i_btn(btnC),
+        .i_btn(btn[0]),
         .o_led(w_btn_debounce)
     );
 
@@ -45,14 +45,24 @@ module top(
         .tick(w_tick)
     );
 
+    //여기 추가
+    btn_command_cotroller u_btn_command_cotroller(
+        .clk(clk), 
+        .reset(reset),            // btn0
+        .btn(w_btn_debounce),         // btn[0] : L / btn[1] : C / btn[2] : R
+        .sw(sw),
+        .seg_data(w_seg_data),
+        .led(led)
+    );
 
     fnd_controllor u_fnd_controllor(
         .clk(clk),
         .reset(reset),
-        .input_data(15'd9999),
+        .input_data(w_seg_data),
         .seg_data(seg),
         .an(an)    // 자릿수 선택
     );
+
 
     always @(posedge w_tick, posedge reset) begin
         if(reset)begin
