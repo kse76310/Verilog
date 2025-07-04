@@ -87,9 +87,6 @@ module stopwatch_core(
         end
     end
     
-    // 3. FND 표시용 데이터 조합
-    // 예시: 분과 초를 묶어서 표시 (MMSS 형식)
-    // 실제 하드웨어에서는 이 방식 대신 BCD 변환기를 사용해야 합니다.
     always @(*) begin
         stopwatch_count = sec_count * 100 + ms_count;
     end

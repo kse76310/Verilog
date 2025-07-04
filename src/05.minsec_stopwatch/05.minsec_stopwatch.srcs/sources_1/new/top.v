@@ -6,7 +6,7 @@ module top(
     input [7:0] sw,
     input [2:0] btn,
     output [3:0] an,
-    output [6:0] seg,
+    output [7:0] seg,
     output [15:0] led
 );
 

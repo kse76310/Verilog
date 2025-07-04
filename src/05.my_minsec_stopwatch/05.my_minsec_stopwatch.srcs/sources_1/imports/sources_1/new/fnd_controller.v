@@ -4,7 +4,7 @@ module fnd_controller(
     input clk,
     input reset,
     input [13:0] input_data,
-    output [7:0] seg_data,
+    output [7:0] seg,
     output [3:0] an    // 자릿수 선택 
     );
 

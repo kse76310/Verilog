@@ -1,56 +1,79 @@
 `timescale 1ns / 1ps
 
+// 스톱워치 제어 및 FND 출력 데이터 생성을 담당하는 모듈
+// 수정: ANSI-style 포트 선언 방식으로 변경
 module btn_command_controller(
     input clk,
-    input reset,  // btnU
-    input [2:0] btn, // btn[0]: L btn[1]:C btn[2]:R
+    input reset,
     input [7:0] sw,
-    output [13:0] seg_data,
-    output [15:0] led
-    );
+    input [2:0] debounce_btn,    // [0]:모드변경, [1]:시작/정지, [2]:초기화
+    input [9:0] ms,              // ms 입력은 현재 사용되지 않으나, 추후 표시를 위해 유지
+    input [5:0] sec,             // 초 입력
+    input [5:0] min,             // 분 입력
+    output reg clear,           // 스톱워치 초기화 신호
+    output reg run_stop,        // 스톱워치 시작/정지 신호
+    output reg [15:0] fnd_data         // FND에 표시될 데이터
+);
 
-    // mode 
-    parameter UP_COUNTER = 3'b000;
-    parameter DOWN_COUNTER = 3'b001;
-    parameter SLIDE_SW_READ = 3'b010;
+    // --- 모드 정의 ---
+    parameter STOPWATCH_MODE = 2'b00;
+    parameter SLIDE_SW_MODE  = 2'b01;
 
-    reg prev_btnL=0;
-    reg [2:0] r_mode;
-    reg [19:0] counter;
-    reg [13:0] ms10_counter;
+    // --- 내부 레지스터 ---
+    reg [1:0] r_mode = STOPWATCH_MODE;
+    reg prev_btn_mode = 1'b0;
+    reg prev_btn_run = 1'b0;
 
-    // mode check 
-    always @(posedge clk, posedge reset) begin
+
+    // 1. 모드 변경 로직 (버튼 0)
+    always @(posedge clk or posedge reset) begin
         if (reset) begin
-            r_mode <= 0;
-            prev_btnL <= 0;
-        end else begin 
-            if (btn[0] && !prev_btnL) begin  // 처음 눌려진 상태 
-                r_mode <= (r_mode == SLIDE_SW_READ) ? UP_COUNTER : r_mode + 1; 
-            end
-            prev_btnL <= btn[0];
-        end 
-    end 
-
-    // up counter  
-    always @(posedge clk, posedge reset) begin
-        if (reset) begin
-            counter <= 0;
-            ms10_counter <= 0;
-        end else if (r_mode == UP_COUNTER)  begin 
-            if (counter == 20'd1_000_000-1) begin // 10ms
-                ms10_counter <= ms10_counter + 1; 
-                counter <= 0; 
-            end else begin 
-                counter <= counter + 1; 
-            end 
+            r_mode <= STOPWATCH_MODE;
+            prev_btn_mode <= 1'b0;
         end else begin
-            ms10_counter <= 0; 
-            counter <= 0;            
-        end 
-    end 
+            if (debounce_btn[0] && !prev_btn_mode) begin
+                r_mode <= (r_mode == SLIDE_SW_MODE) ? STOPWATCH_MODE : r_mode + 1;
+            end
+            prev_btn_mode <= debounce_btn[0];
+        end
+    end
 
-    assign seg_data = (r_mode == UP_COUNTER) ? ms10_counter :
-                      (r_mode == DOWN_COUNTER) ? ms10_counter : sw; 
+    // 2. 스톱워치 제어 신호 생성 로직 (버튼 1, 2)
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            run_stop <= 1'b0; // 정지 상태에서 시작
+            clear <= 1'b0;
+            prev_btn_run <= 1'b0;
+        end else begin
+            // 시작/정지 버튼 (토글)
+            if (debounce_btn[1] && !prev_btn_run) begin
+                run_stop <= ~run_stop;
+            end
+            prev_btn_run <= debounce_btn[1];
+
+            // 초기화 버튼 (누를 때만 1)
+            clear <= debounce_btn[2];
+        end
+    end
+
+    // 3. FND에 보낼 데이터 선택 로직
+    always @(*) begin
+        case(r_mode)
+            STOPWATCH_MODE: begin
+                // 수정: 실제 min, sec 값을 조합하여 fnd_data 생성
+                // 4자리 FND에 분(2자리), 초(2자리)를 표시하도록 데이터 조합
+                // 예: {min[5:0], sec[5:0]} -> {001110, 010101}
+                // fnd_controller가 BCD를 받는다면 변환이 필요하지만,
+                // 우선 이진값을 그대로 전달합니다.
+                fnd_data = {4'b0, min, sec}; // {4비트 공백, 6비트 분, 6비트 초} -> 총 16비트
+            end
+            SLIDE_SW_MODE: begin
+                fnd_data = {8'b0, sw}; // 스위치 값을 FND에 표시
+            end
+            default: begin
+                fnd_data = 16'h0000;
+            end
+        endcase
+    end
 
 endmodule

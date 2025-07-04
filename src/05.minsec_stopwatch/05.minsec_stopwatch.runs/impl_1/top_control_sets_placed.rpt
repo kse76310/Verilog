@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date         : Fri Jul  4 09:01:11 2025
+| Date         : Fri Jul  4 15:27:30 2025
 | Host         : DESKTOP-K4298A2 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               6 |            4 |
-| No           | No                    | Yes                    |              85 |           27 |
+| No           | No                    | No                     |               6 |            5 |
+| No           | No                    | Yes                    |              85 |           24 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              47 |           13 |
+| Yes          | No                    | Yes                    |              47 |           14 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -73,12 +73,12 @@ Table of Contents
 +----------------+-----------------------------------------------------+------------------+------------------+----------------+--------------+
 |  Clock Signal  |                    Enable Signal                    | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+-----------------------------------------------------+------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG |                                                     |                  |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG |                                                     |                  |                5 |              6 |         1.20 |
 |  clk_IBUF_BUFG | u_stopwatch_core/sec_count[5]_i_1_n_0               | reset_IBUF       |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | u_stopwatch_core/ms_count[6]_i_1_n_0                | reset_IBUF       |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG | u_stopwatch_core/ms_count[6]_i_1_n_0                | reset_IBUF       |                3 |              7 |         2.33 |
 |  clk_IBUF_BUFG | u_btn_command_controller/up_down_counter[0]_i_1_n_0 | reset_IBUF       |                4 |             14 |         3.50 |
 |  clk_IBUF_BUFG | u_stopwatch_core/tick_counter                       | reset_IBUF       |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG |                                                     | reset_IBUF       |               27 |             85 |         3.15 |
+|  clk_IBUF_BUFG |                                                     | reset_IBUF       |               24 |             85 |         3.54 |
 +----------------+-----------------------------------------------------+------------------+------------------+----------------+--------------+
 
 

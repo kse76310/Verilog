@@ -6,7 +6,7 @@ module fnd_controllor(
     input reset,
     input [13:0] input_data,
     input animation_active,
-    output [6:0] seg,
+    output [7:0] seg,
     output [3:0] an      // 자릿수 선택
 );
     // 내부 신호선 선언
