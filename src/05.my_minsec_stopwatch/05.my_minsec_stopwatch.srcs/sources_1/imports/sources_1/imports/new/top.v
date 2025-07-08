@@ -10,97 +10,57 @@ module top(
     output [15:0] led
 );
 
-    // --- 내부 신호 선언 ---
-    wire [2:0] w_btn_debounce;
-    wire w_tick; // 1ms tick from tick_generator
+wire [2:0] w_debounced_btn;
+wire [13:0] w_seg_data;
+wire [4:0] w_hour_count;
+wire [5:0] w_min_count;
+wire [12:0] w_sec_count;
+wire [13:0] w_stopwatch_count;
+wire w_run_stop;
+wire w_clear;
+wire w_tick;
 
-    // FND 컨트롤러로 전달할 시간 데이터 (16비트로 가정, 예: {2'b0, min, 2'b0, sec})
-    wire [15:0] w_fnd_input_data; 
-    
-    // LED 토글용 레지스터
-    reg [$clog2(500)-1:0] r_500ms_count = 0;
-    reg [$clog2(100)-1:0] r_100ms_count = 0;
-    reg r_led_500mstoggle = 1'b0;
-    reg r_led_100mstoggle = 1'b0;
-
-    // --- 모듈 인스턴스 ---
-
-    // 1. 버튼 디바운서
-    btn_debouncer U_btn_debouncer(
-        .clk(clk),
-        .reset(reset),
-        .btn(btn),
-        .debounce_btn(w_btn_debounce) // 수정: 출력 와이어 이름 통일
-    );
-
-    // 2. 1ms 틱 생성기
-    tick_generator u_tick_generator(
-        .clk(clk),
-        .reset(reset),
-        .tick(w_tick)
-    );
-
-    btn_command_controller u_btn_command_controller(
-        .clk(clk),
-        .reset(reset),
-        .sw(sw),
-        .debounce_btn(debounce_btn),    // [0]:모드변경, [1]:시작/정지, [2]:초기화
-        .ms(ms),              // ms 입력은 현재 사용되지 않으나, 추후 표시를 위해 유지
-        .sec(sec),             // 초 입력
-        .min(min),             // 분 입력
-        .clear(clear),           // 스톱워치 초기화 신호
-        .run_stop(run_stop),        // 스톱워치 시작/정지 신호
-        .fnd_data(fnd_data)         // FND에 표시될 데이터
+stopwatch_core u_stopwatch_core(
+    .clk(clk),              // 50MHz 클럭 입력
+    .reset(reset),            // 리셋 버튼 (Active High)
+    .run_stop(w_run_stop),       // 시작/정지 토글 버튼
+    .clear(clear),
+    .hour_count(w_hour_count),
+    .min_count(w_min_count),
+    .sec_count(w_sec_count),
+    .stopwatch_count(w_stopwatch_count)
 );
-    
-    // 4. 7세그먼트 표시장치(FND) 제어
-    fnd_controller u_fnd_controller(
-        .clk(clk),
-        .reset(reset),
-        .input_data(w_fnd_input_data), // 수정: btn_command_controller로부터 데이터 입력
-        .seg(seg),
-        .an(an)
-    );
 
-    stopwatch_ms u_stopwatch_ms(
-        .clk(clk),              // 50MHz 클럭 입력
-        .reset(reset),            // 리셋 버튼 (Active High)
-        .run_stop(run_stop),       // 시작/정지 토글 버튼
-        .ms(ms),    // 밀리초 출력 (0-999, 10비트 필요)
-        .sec(sec),   // 초 출력 (0-59, 6비트 필요)
-        .min(min)    // 분 출력 (0-59, 6비트 필요)
-    );
+btn_command_controller u_btn_command_controller(
+    .clk(clk),
+    .reset(reset),
+    .sw(sw),
+    .debounced_btn(w_debounced_btn),    // [0]:모드변경, [1]:시작/정지, [2]:초기화
+    .hour_count(w_hour_count),
+    .min_count(w_min_count),
+    .sec_count(w_sec_count),
+    .stopwatch_count(w_stopwatch_count),
+    .clear(clear),
+    .run_stop(w_run_stop),
+    .seg_data(w_seg_data),
+    .led(led)
 
-    // --- LED 점멸 로직 ---
-    // 1ms 틱을 기준으로 100ms, 500ms 주기로 LED를 토글합니다.
-    always @(posedge w_tick or posedge reset) begin
-        if (reset) begin
-            r_500ms_count <= 0; 
-            r_100ms_count <= 0;
-            r_led_500mstoggle <= 0;
-            r_led_100mstoggle <= 0;
-        end else begin
-            // 500ms 토글 로직
-            if (r_500ms_count == 500-1) begin
-                r_500ms_count <= 0;
-                r_led_500mstoggle <= ~r_led_500mstoggle;
-            end else begin
-                r_500ms_count <= r_500ms_count + 1;
-            end 
-            
-            // 100ms 토글 로직
-            if (r_100ms_count == 100-1) begin
-                r_100ms_count <= 0;
-                r_led_100mstoggle <= ~r_led_100mstoggle;
-            end else begin
-                r_100ms_count <= r_100ms_count + 1;
-            end 
-        end
-    end
+);
 
-    // --- 최종 출력 할당 ---
-    assign led[1] = r_led_100mstoggle;
-    assign led[0] = r_led_500mstoggle;
-    // 참고: led[15:2]는 현재 사용되지 않으므로 0으로 출력됩니다.
+fnd_controller u_fnd_controller(
+    .clk(clk),
+    .reset(reset),
+    .input_data(w_seg_data),
+    .seg(seg),
+    .an(an)    // 자릿수 선택 
+);
+
+btn_debouncer u_btn_debouncer (
+    .clk(clk),          // 시스템 클럭 (타이머를 위해)
+    .reset(reset),        // 리셋 신호
+    .noise_btn(btn),       // 물리 버튼에서 들어오는 불안정한 입력
+    .tick(w_tick),
+    .clean_btn(w_debounced_btn)
+);
 
 endmodule

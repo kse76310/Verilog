@@ -127,8 +127,7 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 2
-  set_param synth.incrementalSynthesisCache C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-15648-DESKTOP-K4298A2/incrSyn
-  set_param xicom.use_bs_reader 1
+  set_param synth.incrementalSynthesisCache C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-13124-DESKTOP-K4298A2/incrSyn
   open_checkpoint top_routed.dcp
   set_property webtalk.parent_dir D:/project1/FPGA/src/05.my_minsec_stopwatch/05.my_minsec_stopwatch.cache/wt [current_project]
 set_property TOP top [current_fileset]

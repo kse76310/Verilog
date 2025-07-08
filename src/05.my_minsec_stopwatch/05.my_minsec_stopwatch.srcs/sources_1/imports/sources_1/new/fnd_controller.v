@@ -32,7 +32,7 @@ module fnd_controller(
         .d100(w_d100),  
         .d1000(w_d1000),
         .an(an),
-        .seg(seg_data)
+        .seg(seg)
 );
 
 endmodule
@@ -60,7 +60,7 @@ module fnd_digit_select (
                 r_digit_sel <= r_digit_sel + 1; 
                 sel <= r_digit_sel;
             end else begin
-                r_1ms_counter = r_1ms_counter + 1; 
+                r_1ms_counter <= r_1ms_counter + 1; 
             end 
         end
     end
@@ -122,4 +122,15 @@ module fnd_display(
             default: seg = 8'b11111111;  // all off
         endcase
     end 
+endmodule
+
+module fnd_anim(
+    input clk,
+    input reset,
+    output reg [7:0] seg,
+    output reg [3:0] an
+);
+    reg [3:0] anim_step = 0;
+    reg [26:0] counter = 0;
+
 endmodule
