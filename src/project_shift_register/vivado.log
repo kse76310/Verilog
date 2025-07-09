@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Jul  9 16:49:52 2025
+# Process ID: 12352
+# Current directory: D:/project1/FPGA/src/project_shift_register
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14460 D:\project1\FPGA\src\project_shift_register\project_shift_register.xpr
+# Log file: D:/project1/FPGA/src/project_shift_register/vivado.log
+# Journal file: D:/project1/FPGA/src/project_shift_register\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/project1/FPGA/src/project_shift_register/project_shift_register.xpr
+INFO: [Project 1-313] Project file moved from 'D:/project/FPGA/202505/project_shift_register' since last save.
+WARNING: [filemgmt 56-3] Board Part Repository Path: Could not find the directory 'C:/Users/user/AppData/Roaming/Xilinx/Vivado/2021.1/xhub/board_store/xilinx_board_store'.
+WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'D:/project1/FPGA/src/project_shift_register/project_shift_register.gen/sources_1', nor could it be found using path 'D:/project/FPGA/202505/project_shift_register/project_shift_register.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+CRITICAL WARNING: [Board 49-67] The board_part definition was not found for digilentinc.com:basys3:part0:1.2. This can happen sometimes when you use custom board part. You can resolve this issue by setting 'board.repoPaths' parameter, pointing to the location of custom board files. Valid board_part values can be retrieved with the 'get_board_parts' Tcl command.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'.
+update_compile_order -fileset sources_1

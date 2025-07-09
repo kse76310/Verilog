@@ -11,6 +11,18 @@ module fsm_2(
     parameter DONE = 2'b11;
     reg[1:0] state, next_state;
 
+    // always @(go or ws or state)begin
+    //     case (state)
+    //         IDLE: next_state = go ? READ : IDLE; 
+    //         READ: next_state = DLY;
+    //         DLY: next_state = ws ? READ : DONE;
+    //         DONE : next_state = IDLE;
+    //         default: next_state = IDLE;
+    //     endcase
+    // end
+    // assign rd = (state == READ) || (state == DLY);
+    // assign ds = (state == DONE);
+
     always@(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             state <= IDLE;

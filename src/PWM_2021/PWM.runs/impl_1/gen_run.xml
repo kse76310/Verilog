@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1752044855">
+  <File Type="ROUTE-PWR" Name="pwm_dcmotor_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="pwm_dcmotor.tcl"/>
+  <File Type="BITSTR-MMI" Name="pwm_dcmotor.mmi"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="pwm_dcmotor_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="pwm_dcmotor_timing_summary_init.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="pwm_dcmotor_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="pwm_dcmotor_reports.tcl"/>
+  <File Type="OPT-TIMING" Name="pwm_dcmotor_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="pwm_dcmotor_opt.dcp"/>
+  <File Type="OPT-DRC" Name="pwm_dcmotor_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="pwm_dcmotor.hwdef"/>
+  <File Type="PWROPT-DCP" Name="pwm_dcmotor_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="pwm_dcmotor_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="pwm_dcmotor_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="pwm_dcmotor_placed.dcp"/>
+  <File Type="PLACE-IO" Name="pwm_dcmotor_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="pwm_dcmotor_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="pwm_dcmotor_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="pwm_dcmotor_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="pwm_dcmotor_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="pwm_dcmotor_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="pwm_dcmotor_incremental_reuse_pre_placed.rpt"/>
+  <File Type="BG-BIN" Name="pwm_dcmotor.bin"/>
+  <File Type="PLACE-TIMING" Name="pwm_dcmotor_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="pwm_dcmotor_postplace_pwropt.dcp"/>
+  <File Type="BITSTR-MSK" Name="pwm_dcmotor.msk"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="pwm_dcmotor_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="pwm_dcmotor_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="pwm_dcmotor_drc_physopted.rpt"/>
+  <File Type="BITSTR-RBT" Name="pwm_dcmotor.rbt"/>
+  <File Type="PHYSOPT-TIMING" Name="pwm_dcmotor_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="pwm_dcmotor_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="pwm_dcmotor_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="pwm_dcmotor_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="pwm_dcmotor_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="pwm_dcmotor_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="pwm_dcmotor_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="pwm_dcmotor_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="pwm_dcmotor_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="pwm_dcmotor_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="pwm_dcmotor_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="pwm_dcmotor_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="pwm_dcmotor_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="pwm_dcmotor_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="pwm_dcmotor_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="pwm_dcmotor_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="pwm_dcmotor_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="pwm_dcmotor_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="pwm_dcmotor_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="pwm_dcmotor_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="pwm_dcmotor_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="pwm_dcmotor_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="pwm_dcmotor_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="pwm_dcmotor_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="pwm_dcmotor_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="pwm_dcmotor_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="pwm_dcmotor_bus_skew_postroute_physopted.rpt"/>
+  <File Type="BG-BIT" Name="pwm_dcmotor.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="pwm_dcmotor_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="pwm_dcmotor_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BITSTR-NKY" Name="pwm_dcmotor.nky"/>
+  <File Type="BITSTR-BMM" Name="pwm_dcmotor_bd.bmm"/>
+  <File Type="PDI-FILE" Name="pwm_dcmotor.pdi"/>
+  <File Type="RCFI_FILE" Name="pwm_dcmotor.rcfi"/>
+  <File Type="CFI_FILE" Name="pwm_dcmotor.cfi"/>
+  <File Type="RNPI_FILE" Name="pwm_dcmotor.rnpi"/>
+  <File Type="NPI_FILE" Name="pwm_dcmotor.npi"/>
+  <File Type="RBD_FILE" Name="pwm_dcmotor.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="pwm_dcmotor.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="pwm_dcmotor.sysdef"/>
+  <File Type="BG-BGN" Name="pwm_dcmotor.bgn"/>
+  <File Type="BG-DRC" Name="pwm_dcmotor.drc"/>
+  <File Type="RDI-RDI" Name="pwm_dcmotor.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/debounce_pushbutton.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/dff.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fnd_display.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/pwm_duty_cycle_control.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/pwm_dcmotor.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="pwm_dcmotor"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/digilent-xdc-master/Basys3-Master_orginal.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../../241217/TEST/05_1DCMOTOR_PWM_CONTROL_FND/05_1DCMOTOR_PWM_CONTROL_FND.srcs/constrs_1/imports/digilent-xdc-master/Basys3-Master_orginal.xdc"/>
+        <Attr Name="ImportTime" Val="1736924817"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

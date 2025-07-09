@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Jul  9 15:46:08 2025
+# Process ID: 13704
+# Current directory: D:/project1/FPGA/src/PWM_2021
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10388 D:\project1\FPGA\src\PWM_2021\PWM.xpr
+# Log file: D:/project1/FPGA/src/PWM_2021/vivado.log
+# Journal file: D:/project1/FPGA/src/PWM_2021\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/project1/FPGA/src/PWM_2021/PWM.xpr
+update_compile_order -fileset sources_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {D:/project1/FPGA/src/PWM_2021/PWM.runs/impl_1/pwm_dcmotor.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+create_hw_cfgmem -hw_device [get_hw_devices xc7a35t_0] -mem_dev [lindex [get_cfgmem_parts {mx25l3233f-spi-x1_x2_x4}] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {D:/project1/FPGA/src/PWM_2021/PWM.runs/impl_1/pwm_dcmotor.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+launch_runs impl_1 -jobs 8
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {D:/project1/FPGA/src/PWM_2021/PWM.runs/impl_1/pwm_dcmotor.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]

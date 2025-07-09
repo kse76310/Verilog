@@ -1,0 +1,21 @@
+Vivado Simulator v2021.1
+Copyright 1986-1999, 2001-2021 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2021.1/bin/unwrapped/win64.o/xelab.exe -wto 7c242c5a846d46109cbe2ff0b5cd5407 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_minimal_behav xil_defaultlib.tb_minimal xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 16 differs from formal bit length 14 for port 'in_data' [D:/project1/FPGA/src/08.vending_mashine/08.vending_mashine.srcs/sources_1/imports/new/fnd_controller.v:29]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.debounce_btn
+Compiling module xil_defaultlib.fnd_digit_select
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.fnd_display
+Compiling module xil_defaultlib.fnd_controller
+Compiling module xil_defaultlib.fsm
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.tb_minimal
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_minimal_behav

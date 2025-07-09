@@ -1,0 +1,123 @@
+/*
+
+Xilinx Vivado v2021.1 (64-bit) [Major: 2021, Minor: 1]
+SW Build: 3247384 on Thu Jun 10 19:36:33 MDT 2021
+IP Build: 3246043 on Fri Jun 11 00:30:35 MDT 2021
+
+Process ID (PID): 12352
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Wed Jul 09 16:50:04 KST 2025
+Time zone: 	Korean Standard Time (Asia/Seoul)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	D:/Xilinx/Vivado/2021.1/tps/win64/jre11.0.2
+Java executable: 	D:/Xilinx/Vivado/2021.1/tps/win64/jre11.0.2/bin/java.exe
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	microsoft
+User home directory: C:/Users/microsoft
+User working directory: D:/project1/FPGA/src/project_shift_register
+User country: 	KR
+User language: 	ko
+User locale: 	ko_KR
+
+RDI_BASEROOT: D:/Xilinx/Vivado
+HDI_APPROOT: D:/Xilinx/Vivado/2021.1
+RDI_DATADIR: D:/Xilinx/Vivado/2021.1/data
+RDI_BINDIR: D:/Xilinx/Vivado/2021.1/bin
+
+Vivado preferences file: C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/2021.1/vivado.xml
+Vivado preferences directory: C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/2021.1/
+Vivado layouts directory: C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/2021.1/data/layouts
+PlanAhead jar file: 	D:/Xilinx/Vivado/2021.1/lib/classes/planAhead.jar
+Vivado log file: 	D:/project1/FPGA/src/project_shift_register/vivado.log
+Vivado journal file: 	D:/project1/FPGA/src/project_shift_register/vivado.jou
+Engine tmp dir: 	D:/project1/FPGA/src/project_shift_register/.Xil/Vivado-12352-DESKTOP-K4298A2
+
+Xilinx Environment Variables
+----------------------------
+XILINX: D:/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_DSP: D:/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_HLS: D:/Xilinx/Vitis_HLS/2021.1
+XILINX_PLANAHEAD: D:/Xilinx/Vivado/2021.1
+XILINX_SDK: D:/Xilinx/Vitis/2021.1
+XILINX_VITIS: D:/Xilinx/Vitis/2021.1
+XILINX_VIVADO: D:/Xilinx/Vivado/2021.1
+XILINX_VIVADO_HLS: D:/Xilinx/Vivado/2021.1
+
+
+GUI allocated memory:	256 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,286 MB
+
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 81 MB (+82722kb) [00:00:04]
+// [Engine Memory]: 1,286 MB (+1196567kb) [00:00:04]
+// bz (cs):  Open Project : addNotify
+// Opening Vivado Project: D:\project1\FPGA\src\project_shift_register\project_shift_register.xpr. Version: Vivado v2021.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project D:/project1/FPGA/src/project_shift_register/project_shift_register.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 102 MB (+17316kb) [00:00:06]
+// [GUI Memory]: 124 MB (+18157kb) [00:00:07]
+// WARNING: HEventQueue.dispatchEvent() is taking  2225 ms.
+// Tcl Message: open_project D:/project1/FPGA/src/project_shift_register/project_shift_register.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from 'D:/project/FPGA/202505/project_shift_register' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2021.1/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,286 MB. GUI used memory: 66 MB. Current time: 7/9/25, 4:50:05 PM KST
+// Project name: project_shift_register; location: D:/project1/FPGA/src/project_shift_register; part: xc7a35tcpg236-1
+dismissDialog("Open Project"); // bz
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// a (cs): Critical Messages: addNotify
+// Tcl Message: update_compile_order -fileset sources_1 
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f
+dismissDialog("Critical Messages"); // a
+// [GUI Memory]: 143 MB (+13532kb) [00:00:14]
