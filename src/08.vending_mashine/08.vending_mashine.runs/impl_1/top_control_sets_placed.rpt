@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date         : Wed Jul  9 09:14:28 2025
+| Date         : Wed Jul  9 18:39:29 2025
 | Host         : DESKTOP-K4298A2 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     8 |
-|    Minimum number of control sets                        |     8 |
+| Total control sets                                       |    18 |
+|    Minimum number of control sets                        |    18 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    43 |
+| Unused register locations in slices containing registers |    94 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     8 |
-| >= 0 to < 4        |     4 |
-| >= 4 to < 6        |     1 |
-| >= 6 to < 8        |     0 |
+| Total control sets |    18 |
+| >= 0 to < 4        |     9 |
+| >= 4 to < 6        |     6 |
+| >= 6 to < 8        |     1 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
-| >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     1 |
-| >= 16              |     2 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     1 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               0 |            0 |
-| No           | No                    | Yes                    |             103 |           30 |
+| No           | No                    | No                     |               1 |            1 |
+| No           | No                    | Yes                    |              95 |           27 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              22 |           11 |
+| Yes          | No                    | Yes                    |              50 |           25 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -70,17 +70,27 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+----------------------------------------------+--------------------------------------+------------------+----------------+--------------+
-|  Clock Signal  |                 Enable Signal                |           Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+----------------------------------------------+--------------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG | u_fsm/u_btnC/btn_debounced0_out              | btnU_IBUF                            |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | u_fsm/u_btnD/btn_debounced0_out              | btnU_IBUF                            |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | u_fsm/u_btnL/btn_debounced0_out              | btnU_IBUF                            |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | u_fsm/u_btnR/btn_debounced0_out              | btnU_IBUF                            |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | u_fsm/u_fnd/u_fnd_digit_select/r_digit_sel_0 | u_fsm/u_fnd/u_fnd_digit_select/rst_n |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | u_fsm/u_btnD/E[0]                            | btnU_IBUF                            |                6 |             14 |         2.33 |
-|  clk_IBUF_BUFG |                                              | u_fsm/u_fnd/u_fnd_digit_select/rst_n |                5 |             17 |         3.40 |
-|  clk_IBUF_BUFG |                                              | btnU_IBUF                            |               25 |             86 |         3.44 |
-+----------------+----------------------------------------------+--------------------------------------+------------------+----------------+--------------+
++------------------------------+---------------------------------------------------+------------------+------------------+----------------+--------------+
+|         Clock Signal         |                   Enable Signal                   | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------------------+---------------------------------------------------+------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG               | u2_my_btn_debounce/clean_btn2_out                 | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG               | u2_my_btn_debounce/previous_btn_state_i_1__0_n_0  | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG               | u3_my_btn_debounce/clean_btn2_out                 | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG               | u3_my_btn_debounce/previous_btn_state_i_1__1_n_0  | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG               | u4_my_btn_debounce/previous_btn_state_i_1__2_n_0  | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG               | u4_my_btn_debounce/clean_btn2_out                 | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG               | u1_my_btn_debounce/clean_btn2_out                 | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG               | u1_my_btn_debounce/previous_btn_state_i_1_n_0     | reset_IBUF       |                1 |              1 |         1.00 |
+|  u_fsm/anim_mode_reg_i_2_n_0 |                                                   |                  |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG               | u2_my_btn_debounce/counter[3]_i_1__0_n_0          | reset_IBUF       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG               | u3_my_btn_debounce/counter[3]_i_1__1_n_0          | reset_IBUF       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG               | u4_my_btn_debounce/counter[3]_i_1__2_n_0          | reset_IBUF       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG               | u1_my_btn_debounce/counter[3]_i_1_n_0             | reset_IBUF       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG               | u_fnd_controller/u_fnd_anim/anim_step             | reset_IBUF       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG               | u_fnd_controller/u_fnd_digit_select/r_digit_sel_0 | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG               | u_fsm/run_sec[5]_i_1_n_0                          | reset_IBUF       |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG               | u_fsm/next_total                                  | reset_IBUF       |                4 |             12 |         3.00 |
+|  clk_IBUF_BUFG               |                                                   | reset_IBUF       |               27 |             95 |         3.52 |
++------------------------------+---------------------------------------------------+------------------+------------------+----------------+--------------+
 
 

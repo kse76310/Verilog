@@ -92,6 +92,15 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/imports/new/fnd_controller.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="C:/Users/microsoft/Downloads/05.minsec_stopwatch/05.minsec_stopwatch.srcs/sources_1/imports/sources_1/new/fnd_controller.v"/>
+          <Attr Name="ImportTime" Val="1751686893"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/fsm.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -99,18 +108,26 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/top.v">
+      <File Path="$PSRCDIR/sources_1/imports/new/my_btn_debounce.v">
         <FileInfo>
+          <Attr Name="ImportPath" Val="C:/Users/microsoft/Downloads/05.minsec_stopwatch/05.minsec_stopwatch.srcs/sources_1/imports/sources_1/imports/new/my_btn_debounce.v"/>
+          <Attr Name="ImportTime" Val="1751686893"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/new/fnd_controller.v">
+      <File Path="$PSRCDIR/sources_1/imports/new/tick_generator.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="C:/Users/microsoft/Downloads/05.minsec_stopwatch/05.minsec_stopwatch.srcs/sources_1/imports/sources_1/new/fnd_controller.v"/>
+          <Attr Name="ImportPath" Val="C:/Users/microsoft/Downloads/05.minsec_stopwatch/05.minsec_stopwatch.srcs/sources_1/imports/sources_1/imports/new/tick_generator.v"/>
           <Attr Name="ImportTime" Val="1751686893"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/top.v">
+        <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -135,26 +152,6 @@
       <File Path="$PSRCDIR/sources_1/new/coin_counter.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/new/my_btn_debounce.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="C:/Users/microsoft/Downloads/05.minsec_stopwatch/05.minsec_stopwatch.srcs/sources_1/imports/sources_1/imports/new/my_btn_debounce.v"/>
-          <Attr Name="ImportTime" Val="1751686893"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/new/tick_generator.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="C:/Users/microsoft/Downloads/05.minsec_stopwatch/05.minsec_stopwatch.srcs/sources_1/imports/sources_1/imports/new/tick_generator.v"/>
-          <Attr Name="ImportTime" Val="1751686893"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>

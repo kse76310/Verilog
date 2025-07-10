@@ -3,10 +3,10 @@
 module fnd_controller(
     input clk,
     input reset,
-    // input anim_mode,
-    input [15:0] input_data,
+    input anim_mode,
+    input [13:0] input_data,
     output [7:0] seg_data,
-    output [3:0] an    
+    output [3:0] an     // 자릿수 선택
     );
 
     wire [1:0] w_sel;
@@ -14,10 +14,10 @@ module fnd_controller(
     wire [3:0] w_d10;
     wire [3:0] w_d100;
     wire [3:0] w_d1000;
-    // wire [7:0] w_seg_anim;
-    // wire [3:0] w_an_anim;
-    // wire [7:0] w_seg_num;
-    // wire [3:0] w_an_num;
+    wire [7:0] w_seg_anim;
+    wire [3:0] w_an_anim;
+    wire [7:0] w_seg_num;
+    wire [3:0] w_an_num;
 
     fnd_digit_select u_fnd_digit_select(
         .clk(clk),
@@ -39,23 +39,23 @@ module fnd_controller(
         .d10(w_d10),
         .d100(w_d100),
         .d1000(w_d1000),
-        .an(an),
-        .seg(seg_data)
+        .an(w_an_num),
+        .seg(w_seg_num)
     );
 
-    // fnd_anim u_fnd_anim(
-    //     .clk(clk),
-    //     .reset(reset),
-    //     .seg(w_seg_anim),
-    //     .an(w_an_anim)
-    // );
+    fnd_anim u_fnd_anim(
+        .clk(clk),
+        .reset(reset),
+        .seg(w_seg_anim),
+        .an(w_an_anim)
+    );
 
-    // assign seg_data = anim_mode ? w_seg_anim : w_seg_num;
-    // assign an = anim_mode ? w_an_anim : w_an_num;
+    assign seg_data = anim_mode ? w_seg_anim : w_seg_num;
+    assign an = anim_mode ? w_an_anim : w_an_num;
 endmodule
 
 
-
+//1ms 마다 fnd를 display 하기 위해 digit 1자리씩 선택
 module fnd_digit_select(
     input clk,
     input reset,
@@ -84,7 +84,9 @@ endmodule
 
 
 //bin2bcd
-
+// 입력 : bin 14bit인 이유 최대 9999까지 표현 값이 들어 있기 문
+// 0~9999 천/백/십/일 자리 숫자 0~9 까지로 BCD 4bit로 표현
+// 출력 : bcd
 module bin2bcd(
     input [13:0] in_data,
     output [3:0] d1,
@@ -112,7 +114,7 @@ module fnd_display(
 
     reg [3:0] bcd_data;
 
-    always @(*) begin
+    always @(digit_sel) begin
         case(digit_sel)
             2'b00: begin bcd_data = d1; an = 4'b1110; end
             2'b01: begin bcd_data = d10; an = 4'b1101; end
@@ -122,7 +124,7 @@ module fnd_display(
         endcase
     end
 
-    always @(*) begin
+    always @(bcd_data) begin
         case(bcd_data)
             4'd0: seg = 8'b11000000;
             4'd1: seg = 8'b11111001;
@@ -140,48 +142,47 @@ module fnd_display(
 endmodule
 
 
-// module fnd_anim(
-//     input clk,
-//     input reset,
-//     output reg [7:0] seg,
-//     output reg [3:0] an
-// );
-//     reg [3:0] anim_step = 0;
-//     reg [26:0] counter = 0;  
+module fnd_anim(
+    input clk,
+    input reset,
+    output reg [7:0] seg,
+    output reg [3:0] an
+);
+    reg [3:0] anim_step = 0;
+    reg [26:0] counter = 0;  
 
-//     always @(posedge clk or posedge reset) begin
-//         if (reset) begin
-//             anim_step <= 0;
-//             counter <= 0;
-//         end else begin
-//             if (counter == 10_000_000 - 1) begin
-//                 counter <= 0;
-//                 anim_step <= (anim_step == 11) ? 0 : anim_step + 1;
-//             end else begin
-//                 counter <= counter + 1;
-//             end
-//         end
-//     end
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            anim_step <= 0;
+            counter <= 0;
+        end else begin
+            if (counter == 10_000_000 - 1) begin
+                counter <= 0;
+                anim_step <= (anim_step == 11) ? 0 : anim_step + 1;
+            end else begin
+                counter <= counter + 1;
+            end
+        end
+    end
 
-//     always @(*) begin
-//         seg = 8'b11111111; 
-//         an = 4'b1111;      
+    always @(*) begin
+        seg = 8'b11111111; 
+        an = 4'b1111;      
 
-//         case(anim_step)
-//             0: begin an = 4'b0111; seg = 8'b11011111; end 
-//             1: begin an = 4'b0111; seg = 8'b11111110; end 
-//             2: begin an = 4'b1011; seg = 8'b11111110; end 
-//             3: begin an = 4'b1101; seg = 8'b11111110; end 
-//             4: begin an = 4'b1110; seg = 8'b11111110; end 
-//             5: begin an = 4'b1110; seg = 8'b11111101; end 
-//             6: begin an = 4'b1110; seg = 8'b11111011; end 
-//             7: begin an = 4'b1110; seg = 8'b11110111; end 
-//             8: begin an = 4'b1101; seg = 8'b11110111; end 
-//             9: begin an = 4'b1011; seg = 8'b11110111; end 
-//             10:begin an = 4'b0111; seg = 8'b11110111; end 
-//             11:begin an = 4'b0111; seg = 8'b11101111; end 
-//             default: begin an = 4'b1111; seg = 8'b11111111; end
-//         endcase
-//     end
-
-// endmodule
+        case(anim_step)
+            0: begin an = 4'b0111; seg = 8'b11011111; end 
+            1: begin an = 4'b0111; seg = 8'b11111110; end 
+            2: begin an = 4'b1011; seg = 8'b11111110; end 
+            3: begin an = 4'b1101; seg = 8'b11111110; end 
+            4: begin an = 4'b1110; seg = 8'b11111110; end 
+            5: begin an = 4'b1110; seg = 8'b11111101; end 
+            6: begin an = 4'b1110; seg = 8'b11111011; end 
+            7: begin an = 4'b1110; seg = 8'b11110111; end 
+            8: begin an = 4'b1101; seg = 8'b11110111; end 
+            9: begin an = 4'b1011; seg = 8'b11110111; end 
+            10:begin an = 4'b0111; seg = 8'b11110111; end 
+            11:begin an = 4'b0111; seg = 8'b11101111; end 
+            default: begin an = 4'b1111; seg = 8'b11111111; end
+        endcase
+    end
+endmodule

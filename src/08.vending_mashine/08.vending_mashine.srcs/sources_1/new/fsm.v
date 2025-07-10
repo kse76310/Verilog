@@ -1,107 +1,119 @@
 `timescale 1ns / 1ps
 
-
-module my_vending_machine(
-    input clk,
-    input reset,
-    input [3:0] i_btn,
-    output reg [14:0]cup,
-    output reg [14:0]money
+module fsm(
+    input  clk,
+    input  reset,
+    input  btnL,
+    input  btnC,
+    input  btnR,
+    input  btnD,
+    output reg anim_mode,
+    output [13:0] total
     );
 
-    
-   localparam COFFEE_COST = 300; //고정된 상수값은 localparam으로 선언
-    reg [14:0] next_money;
-    reg [14:0] next_cup;
-    reg[1:0] state, next_state;
-    parameter IDLE =1'b0 ;
-    parameter COFFEE =1'b1 ;
+    parameter IDLE = 2'b00, 
+              READY = 2'b01, 
+              RUN = 2'b10;
 
-    reg prev_btnL =0;
-    reg prev_btnC =0;
-    reg prev_btnR =0;
-    reg prev_btnD =0;
+    reg    btnL_prev;
+    reg    btnC_prev;
+    reg    btnR_prev;
+    reg    btnD_prev;
 
-    wire btnL_pulse = i_btn[0] & ~prev_btnL;
-    wire btnC_pulse = i_btn[1] & ~prev_btnC;
-    wire btnR_pulse = i_btn[2] & ~prev_btnR;
-    wire btnD_pulse = i_btn[3] & ~prev_btnD;
+    reg [1:0] current_state = IDLE;
+    reg [1:0] next_state = IDLE;
+    reg [13:0] r_total = 0;
+    reg [13:0] next_total;
+    reg [26:0] tick_counter = 0;
+    reg [5:0] run_sec = 0;
 
+    wire btnL_posedge =  btnL & ~btnL_prev;
+    wire btnC_posedge =  btnC & ~btnC_prev;
+    wire btnR_posedge =  btnR & ~btnR_prev;
+    wire btnD_posedge =  btnD & ~btnD_prev;    
 
-  always@(posedge clk, posedge reset)begin
-        if(reset)begin
-           prev_btnL <= 0;
-           prev_btnC <= 0;
-           prev_btnR <= 0;
-           prev_btnD <= 0; 
+    wire tick_1s = (tick_counter == 100_000_000-1);
+
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            tick_counter <= 0;
+        end else if (tick_counter == 100_000_000-1)
+            tick_counter <= 0;
+        else
+            tick_counter <= tick_counter + 1;
+    end    
+
+    always @(posedge clk or posedge reset) begin
+        if (reset || current_state != RUN)
+            run_sec <= 0;
+        else if (tick_1s)
+            run_sec <= run_sec + 1;
+    end
+
+    always @ (*) 
+    begin
+        case (current_state)
+            IDLE : begin
+                 next_state = READY;
+            end
+            READY : begin
+                if     (btnR_posedge)                        next_state = IDLE;
+                else if(btnC_posedge && (r_total >=14'd300)) next_state = RUN;
+                else if(btnC_posedge && (r_total < 14'd300)) next_state = READY;
+                else                                         next_state = READY;
+            end    
+            RUN : begin
+                if(run_sec >=1) next_state = READY; 
+                else             next_state = RUN; 
+            end
+            default : next_state = IDLE;
+        endcase
+    end   
+
+    always @ (posedge clk, posedge reset) 
+    begin
+        if(reset) begin
+            current_state <= IDLE;
+            r_total   <=0;
+            btnL_prev <=0;
+            btnC_prev <=0;
+            btnR_prev <=0;
+            btnD_prev <=0;            
         end
         else begin
-           prev_btnL <= i_btn[0];
-           prev_btnC <= i_btn[1];
-           prev_btnR <= i_btn[2];
-           prev_btnD <= i_btn[3]; 
-        end
-        
-        end
+            current_state <= next_state;
+            r_total       <= next_total;
+            btnL_prev <= btnL;
+            btnC_prev <= btnC;
+            btnR_prev <= btnR;
+            btnD_prev <= btnD;                     
+        end  
+    end 
 
-        always@(posedge clk, posedge reset)begin
-            if(reset) begin
-                state <= IDLE;
-                cup <= 14'd0;
-                money <= 14'd0;
+    always @ (*) 
+    begin
+        next_total = r_total;
+        case (current_state)
+            IDLE : begin
+                next_total = 14'd0;
+                anim_mode = 0;
             end
-            else begin 
-            state <= next_state;
-            money <= next_money;
-            if (state == COFFEE && btnC_pulse && (money >= COFFEE_COST)) begin
-                cup <= {cup[13:0], 1'b1};
+            READY : begin
+                anim_mode = 0;
+                if(btnL_posedge)                             next_total = r_total + 14'd100;
+                else if(btnC_posedge && (r_total >=14'd300)) next_total = r_total - 14'd300;
+                else if(btnC_posedge && (r_total < 14'd300)) next_total = r_total; 
+                else if(btnD_posedge)                        next_total = r_total + 14'd500; 
+                else if(btnR_posedge)                        next_total = 0 ; 
+                else                                         next_total = r_total; 
+            end    
+            RUN : begin
+                next_total = r_total;
+                anim_mode = 1;
             end
-        end
-        end
-
-
-      always@(*)begin
-  // 기본값 할당 (Latch 방지)
-    next_state = state;
-    next_money = money;
-    next_cup = cup;
- 
-        case(state)
-        IDLE:begin //돈을 넣을 수 있는 상태 , 이다음에 
-            if(btnL_pulse)begin
-                next_money = (money >= 9900) ? money :(money + 100);
-            end
-            else if(btnD_pulse)begin
-                 next_money = (money >= 9900) ? money :(money + 500);
-            end
-            else if(btnC_pulse)begin
-                next_state = COFFEE;
-            end
-             else if(btnR_pulse)begin
-                next_money = 0;
-                next_cup = 14'd0;
-             end
-        end
-        COFFEE:begin
-            if(btnC_pulse && (money >= COFFEE_COST ))begin
-                next_money = money - COFFEE_COST;
-            end
-            else if(btnC_pulse && (money < COFFEE_COST ))begin
-                next_money = money; 
-                next_state = IDLE;
-            end
-            else if(btnR_pulse)begin
-                next_state = IDLE;
-                next_money = 0;
-                next_cup = 14'd0;
-            end
-           
-        end
-        default: begin
-            next_state = IDLE;
-        end
-
+            default : next_total = r_total;
         endcase
-
-    end
+    end    
+    
+    assign total = r_total;
 endmodule

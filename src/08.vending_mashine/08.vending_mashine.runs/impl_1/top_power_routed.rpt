@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date             : Wed Jul  9 09:14:47 2025
+| Date             : Wed Jul  9 18:39:48 2025
 | Host             : DESKTOP-K4298A2 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.094        |
+| Total On-Chip Power (W)  | 0.095        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.022        |
+| Dynamic (W)              | 0.023        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.5         |
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.001 |        3 |       --- |             --- |
-| Slice Logic    |     0.002 |      599 |       --- |             --- |
-|   LUT as Logic |     0.002 |      291 |     20800 |            1.40 |
-|   CARRY4       |    <0.001 |       51 |      8150 |            0.63 |
-|   Register     |    <0.001 |      125 |     41600 |            0.30 |
-|   Others       |     0.000 |       15 |       --- |             --- |
-| Signals        |     0.002 |      486 |       --- |             --- |
+| Slice Logic    |     0.003 |      643 |       --- |             --- |
+|   LUT as Logic |     0.003 |      314 |     20800 |            1.51 |
+|   CARRY4       |    <0.001 |       53 |      8150 |            0.65 |
+|   Register     |    <0.001 |      146 |     41600 |            0.35 |
+|   Others       |     0.000 |       13 |       --- |             --- |
+| Signals        |     0.002 |      529 |       --- |             --- |
 | I/O            |     0.017 |       18 |       106 |           16.98 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.094 |          |           |                 |
+| Total          |     0.095 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.015 |       0.005 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.016 |       0.007 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.006 |       0.005 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -137,13 +137,13 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-----------------+-----------+
-| Name            | Power (W) |
-+-----------------+-----------+
-| top             |     0.022 |
-|   u_fsm         |     0.005 |
-|     u_fnd       |     0.002 |
-|       u_bin2bcd |     0.002 |
-+-----------------+-----------+
++--------------------+-----------+
+| Name               | Power (W) |
++--------------------+-----------+
+| top                |     0.023 |
+|   u_fnd_controller |     0.003 |
+|     u_bin2bcd      |     0.001 |
+|   u_fsm            |     0.003 |
++--------------------+-----------+
 
 

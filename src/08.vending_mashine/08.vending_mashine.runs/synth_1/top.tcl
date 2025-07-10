@@ -71,10 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
-set_param chipscope.maxJobs 2
-set_param synth.incrementalSynthesisCache C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-17580-DESKTOP-K4298A2/incrSyn
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
+set_param synth.incrementalSynthesisCache D:/project1/FPGA/src/project_shift_register/.Xil/Vivado-12352-DESKTOP-K4298A2/incrSyn
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
@@ -94,9 +91,10 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  D:/project1/FPGA/src/08.vending_mashine/08.vending_mashine.srcs/sources_1/new/debounce_btn.v
   D:/project1/FPGA/src/08.vending_mashine/08.vending_mashine.srcs/sources_1/imports/new/fnd_controller.v
   D:/project1/FPGA/src/08.vending_mashine/08.vending_mashine.srcs/sources_1/new/fsm.v
+  D:/project1/FPGA/src/08.vending_mashine/08.vending_mashine.srcs/sources_1/imports/new/my_btn_debounce.v
+  D:/project1/FPGA/src/08.vending_mashine/08.vending_mashine.srcs/sources_1/imports/new/tick_generator.v
   D:/project1/FPGA/src/08.vending_mashine/08.vending_mashine.srcs/sources_1/new/top.v
 }
 OPTRACE "Adding files" END { }

@@ -1,38 +1,32 @@
-module my_button_debounce(
-    input i_clk, 
-    input i_reset,
-    input i_btn,
-    output reg o_btn
-    );
-    wire w_tick;
-    wire w_out_clk;
-    reg r_btn_prev = 0;
-    reg [3:0] stable_count = 0;
+`timescale 1ns / 1ps
 
-    tick_gennerator u_tick_gen(
-        .clk(i_clk),
-        .reset(i_reset),
-        .tick(w_tick)
-    );
+module my_btn_debounce(
+    input clk,
+    input reset,
+    input noise_btn,
+    input tick, 
+    output reg clean_btn
+);
 
-      always @(posedge w_tick, posedge i_reset) begin
-        if(i_reset) begin
-            r_btn_prev <= 0;
-            stable_count <= 0;
-            o_btn <= 0;
+    parameter DEBOUNCE_TICKS = 10; 
+    reg [$clog2(DEBOUNCE_TICKS)-1:0] counter;
+    reg previous_btn_state;
+
+    always @(posedge clk, posedge reset) begin
+        if(reset) begin
+            counter <= 0;
+            clean_btn <= 0;
+            previous_btn_state <= 0;
         end else begin
-            if(i_btn == r_btn_prev) begin
-            if(stable_count < 10)
-            stable_count <= stable_count + 1;
-            end else begin
-                stable_count <=0;
-                r_btn_prev <= i_btn;
+            if(noise_btn != previous_btn_state) begin
+                previous_btn_state <= noise_btn;
+                counter <= DEBOUNCE_TICKS;
+            end 
+            else if (counter != 0 && tick) begin
+                counter <= counter - 1;
+                if (counter == 1)
+                    clean_btn <= noise_btn;
             end
-
-            if(stable_count == 10)
-                o_btn <= r_btn_prev;
         end
-
-     end
-
+    end
 endmodule
