@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Jul 11 16:15:46 2025
+# Process ID: 16524
+# Current directory: D:/project1/FPGA/src/13.microwave/13.microwave.runs/synth_1
+# Command line: vivado.exe -log top_micro.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_micro.tcl
+# Log file: D:/project1/FPGA/src/13.microwave/13.microwave.runs/synth_1/top_micro.vds
+# Journal file: D:/project1/FPGA/src/13.microwave/13.microwave.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source top_micro.tcl -notrace
