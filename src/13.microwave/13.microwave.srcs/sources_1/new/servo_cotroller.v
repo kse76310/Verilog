@@ -26,11 +26,9 @@ module pwm_generator (
         end
     end
 
-    // --- 2. 듀티 카운터 로직 (이제 이 부분을 작성할 차례입니다) ---
+    // --- 2. 듀티 카운터 로직 ---
     always @(*) begin
         // FSM에서 받은 position_select 입력에 따라
-        // duty_count 값을 결정하는 로직을 여기에 작성해 보세요.
-        // (예: position_select가 '01'이면 duty_count는 CLOSED_PULSE_COUNT)
         case (position_select)
             2'b01: duty_count = CLOSED_PULSE_COUNT;
             2'b10: duty_count = OPEN_PULSE_COUNT;
@@ -39,6 +37,13 @@ module pwm_generator (
     end
 
     // --- 3. PWM 출력 생성 로직 ---
-    // (다음 단계에서 진행)
+    
+    always @(posedge clk or posedge reset) begin
+        if(reset)begin
+            pwm_out <= 1'b0;
+        end else begin
+            pwm_out <= (period_counter <duty_count);
+        end
+    end
 
 endmodule
