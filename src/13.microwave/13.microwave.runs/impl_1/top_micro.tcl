@@ -127,7 +127,7 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 2
-  set_param synth.incrementalSynthesisCache C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-16220-DESKTOP-K4298A2/incrSyn
+  set_param synth.incrementalSynthesisCache C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-10912-DESKTOP-K4298A2/incrSyn
   set_param xicom.use_bs_reader 1
   open_checkpoint top_micro_routed.dcp
   set_property webtalk.parent_dir D:/project1/FPGA/src/13.microwave/13.microwave.cache/wt [current_project]

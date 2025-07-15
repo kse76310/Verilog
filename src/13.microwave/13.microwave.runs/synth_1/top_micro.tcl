@@ -72,7 +72,7 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
 set_param chipscope.maxJobs 2
-set_param synth.incrementalSynthesisCache C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-16220-DESKTOP-K4298A2/incrSyn
+set_param synth.incrementalSynthesisCache C:/Users/microsoft/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-10912-DESKTOP-K4298A2/incrSyn
 set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
@@ -93,10 +93,13 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/beep_generator.v
   D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/button_debounce.v
+  D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/buzzer_driver.v
   D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/done_timer.v
   D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/fnd_controller.v
   D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/fsm_micro.v
+  D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/servo_cotroller.v
   D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/timer_counter.v
   D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sources_1/new/top_micro.v
 }

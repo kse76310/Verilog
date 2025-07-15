@@ -1,0 +1,6 @@
+Time resolution is 1 ps
+[400000 ns] SCENARIO 2: Safety test (Door is open)
+[1200000 ns] SCENARIO 3: Cooking test (10s)
+[2100000 ns] >> Cooking started for 10s. Fan should be ON.
+[14100000 ns] >> TEST FINISHED.
+$finish called at time : 14100 ns : File "D:/project1/FPGA/src/13.microwave/13.microwave.srcs/sim_1/new/tb_microwave.v" Line 75
