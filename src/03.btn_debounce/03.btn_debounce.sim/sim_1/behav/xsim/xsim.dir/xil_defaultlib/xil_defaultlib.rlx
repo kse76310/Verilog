@@ -1,8 +1,0 @@
-0.7
-2020.2
-Jun 10 2021
-20:04:57
-D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.sim/sim_1/behav/xsim/glbl.v,1623370582,verilog,,,,glbl,,,,,,,,
-D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sim_1/new/tb_my_btn_debounce.v,1751496577,verilog,,,,tb_my_btn_debounce;tick_generator,,,,,,,,
-D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/my_btn_debounce.v,1751454133,verilog,,D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/tick_generator.v,,my_btn_debounce,,,,,,,,
-D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sources_1/new/tick_generator.v,1751437456,verilog,,D:/project1/FPGA/src/03.btn_debounce/03.btn_debounce.srcs/sim_1/new/tb_my_btn_debounce.v,,,,,,,,,,
