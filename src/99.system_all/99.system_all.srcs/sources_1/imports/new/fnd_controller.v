@@ -3,16 +3,24 @@
 module fnd_controller(
     input clk,
     input reset,
-    input [15:0] input_data, // Raw input data for FND
+    // input anim_mode,
+    input [3:0]bcd_minutes_tens,
+    input [3:0]bcd_minutes_ones,
+    input [3:0]bcd_seconds_tens,
+    input [3:0]bcd_seconds_ones,
     output [7:0] seg_data,
     output [3:0] an     // 자릿수 선택
     );
 
     wire [1:0] w_sel;
-    wire [3:0] w_d1;
-    wire [3:0] w_d10;
-    wire [3:0] w_d100;
-    wire [3:0] w_d1000;
+    // wire [3:0] w_d1;
+    // wire [3:0] w_d10;
+    // wire [3:0] w_d100;
+    // wire [3:0] w_d1000;
+    // wire [7:0] w_seg_anim;
+    // wire [3:0] w_an_anim;
+    // wire [7:0] w_seg_num;
+    // wire [3:0] w_an_num;
 
     fnd_digit_select u_fnd_digit_select(
         .clk(clk),
@@ -20,20 +28,20 @@ module fnd_controller(
         .sel(w_sel)
     );
 
-    bin2bcd u_bin2bcd(
-        .in_data(input_data),
-        .d1(w_d1),
-        .d10(w_d10),
-        .d100(w_d100),
-        .d1000(w_d1000)
-    );
+    // bin2bcd u_bin2bcd(
+    //     .in_data(input_data),
+    //     .d1(w_d1),
+    //     .d10(w_d10),
+    //     .d100(w_d100),
+    //     .d1000(w_d1000)
+    // );
 
     fnd_display u_fnd_display(
         .digit_sel(w_sel),
-        .d1(w_d1),
-        .d10(w_d10),
-        .d100(w_d100),
-        .d1000(w_d1000),
+        .d1(bcd_seconds_ones),
+        .d10(bcd_seconds_tens),
+        .d100(bcd_minutes_ones),
+        .d1000(bcd_minutes_tens),
         .an(an),
         .seg(seg_data)
     );
@@ -82,20 +90,20 @@ endmodule
 // 입력 : bin 14bit인 이유 최대 9999까지 표현 값이 들어 있기 문
 // 0~9999 천/백/십/일 자리 숫자 0~9 까지로 BCD 4bit로 표현
 // 출력 : bcd
-module bin2bcd(
-    input [15:0] in_data, // Changed to 16-bit
-    output [3:0] d1,
-    output [3:0] d10,
-    output [3:0] d100,
-    output [3:0] d1000
-);
+// module bin2bcd(
+//     input [13:0] in_data,
+//     output [3:0] d1,
+//     output [3:0] d10,
+//     output [3:0] d100,
+//     output [3:0] d1000
+// );
 
-    assign d1 = (in_data == 0) ? 10 : in_data % 10;
-    assign d10 = (in_data == 0) ? 10 : (in_data / 10) % 10;
-    assign d100 = (in_data == 0) ? 10 : (in_data / 100) % 10;
-    assign d1000 = (in_data == 0) ? 10 : (in_data / 1000) % 10;
+//     assign d1 = in_data % 10;
+//     assign d10 = (in_data / 10) % 10;
+//     assign d100 = (in_data / 100) % 10;
+//     assign d1000 = (in_data / 1000) % 10;
 
-endmodule
+// endmodule
 
 module fnd_display(
     input [1:0] digit_sel,
@@ -131,7 +139,6 @@ module fnd_display(
             4'd7: seg = 8'b11111000;
             4'd8: seg = 8'b10000000;
             4'd9: seg = 8'b10010000;
-            4'd10: seg = 8'b10111111;
             default: seg = 8'b11111111;
         endcase
     end    

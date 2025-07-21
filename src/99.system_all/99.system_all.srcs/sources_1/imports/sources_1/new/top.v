@@ -34,7 +34,7 @@ module top(
     // --- Sub-module Instantiations ---
 
     tick_generator #(
-        // .INPUT_FREQ(1_000_000_000),
+        .INPUT_FREQ(1_000_000_000),
         .TICK_HZ(3)
     ) u_tick_generateor (
        .clk(clk),
